@@ -1,9 +1,19 @@
 import cv2
 import pytesseract
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
-img = cv2.imread('test.jpg')
-img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+Tk().withdraw()
+
+image_path = askopenfilename(title="Select Image File",
+                             filetypes=[("Image Files", ("*.png", "*.jpg", "*.jpeg", "*.bmp"))])
+
+if image_path:
+    img = cv2.imread(image_path)
+    #img = cv2.imread('test.jpg')
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 #print(pytesseract.image_to_string(img))
 
 #Detecting Characters
